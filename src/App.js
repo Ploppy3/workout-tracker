@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { Button } from "@material-ui/core";
+import React from "react";
+import "./App.css";
+import { DialogAddWorkout } from "./components/DialogAddWorkout";
+import { useModal } from "./Hooks/useModal";
 
 function App() {
+  const { isOpened, open, close } = useModal();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Button onClick={() => open().then(() => console.log("closed"))}>
+        Add
+      </Button>
+
+      {isOpened && <DialogAddWorkout onClose={() => close()} />}
+    </>
   );
 }
 
